@@ -1,0 +1,10 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<!-- $paginator := .Paginate (where .Data.Pages "Type" "posts") 20 }} -->
+{{ $paginator := .Paginate .Data.Pages.ByLastmod.Reverse 12 }}
+{{ range $paginator.Pages }}
+{{ .Render "card" }}
+{{ end }}
+
+{{ partial "footer.html" . }}

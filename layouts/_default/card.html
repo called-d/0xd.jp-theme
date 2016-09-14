@@ -1,0 +1,19 @@
+<div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+  {{ with .Params.image }}
+  <div class="mdl-card__media">
+    <img class="card-image" src="{{ . }}" border="0">
+  </div>
+  {{ end }}
+  <div class="mdl-card__title">
+    <a class="mdl-card__title-text" href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }} <small>#Draft</small>{{ end }}</a>
+  </div>
+  <div class="mdl-card__supporting-text">
+    {{ .Summary }}
+  </div>
+  {{ if .Truncated }}
+  <div class="mdl-layout-spacer"></div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="{{ .Permalink }}">Read more</a>
+  </div>
+  {{ end }}
+</div>

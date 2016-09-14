@@ -1,0 +1,18 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{ .Title }}</h2>
+  </div>
+  {{ if isset .Params "image" }}
+  <div class="mdl-card__media">
+    <img class="article-image" src="{{ .Params.image  | absURL }}" border="0">
+  </div>
+  {{ end }}
+  <div class="mdl-grid portfolio-copy">
+    {{ .Content }}
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

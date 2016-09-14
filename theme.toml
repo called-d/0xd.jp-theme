@@ -1,0 +1,16 @@
+name = "modified MDL template: portfolio"
+license = "MIT"
+licenselink = "https://github.com/called-d/0xd.jp-theme/blob/master/LICENSE.md"
+description = ""
+homepage = ""
+tags = ["", ""]
+features = ["", ""]
+min_version = 0.14
+
+[author]
+  name = "called_D"
+  homepage = "0xd.jp"
+
+# If porting an existing theme
+# [original]
+#   homepage = "getmdl.io/templates/portfolio"

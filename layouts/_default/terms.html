@@ -1,0 +1,19 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+<div class="mdl-cell--12-col">
+  <h2>{{ .Title }}</h1>
+</div>
+{{ $data := .Data }}
+{{ range $key,$value := .Data.Terms.ByCount }}
+{{- $url := (print $data.Plural "/" ($value.Name | urlize)) -}}
+<div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+  <div class="mdl-card__title">
+    <a class="mdl-card__title-text" href="{{ $url }}">{{ $value.Name }}</a>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="{{ $url }}">{{ $value.Count }} 個の記事</a>
+  </div>
+</div>
+{{ end }}
+
+{{ partial "footer.html" . }}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+{{- $ogp := .IsPage -}}
+{{- $description := or .Description .Site.Params.description -}}
+<html lang="{{ .Site.LanguageCode }}">
+  {{ if $ogp -}}
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  {{- else -}}
+  <head>
+  {{- end }}
+    <meta charset="utf-8">
+    <title>{{ if ne .Title .Site.Title }}{{ .Title }} : {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ $description }}" />
+    <meta name="author" content="{{ .Site.Params.author }}" />
+    <meta name="copyright" content="{{ with .Site.Copyright }}{{ . | safeHTML }}{{ else }}&copy; All rights reserved.{{end}}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="{{ .Site.BaseURL }}">
+    {{ if (and (not .IsHome) .IsNode) -}}
+    <meta name="robots" content="none" />
+    {{ end -}}
+    {{ if $ogp -}}
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    {{ if isset .Params "image" -}}
+    <meta property="og:image" content="{{ .Params.image | absURL }}" />
+    {{- else -}}
+    <meta property="og:image" content="{{ "/img/logo.svg" | absURL }}" />
+    {{- end }}
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+    <meta property="og:description" content="{{ $description }}" />
+    <meta property="og:locale" content="{{ .Site.Params.locale }}" />
+    <meta name="twitter:site" content="{{ .Site.Params.twitter }}" />
+    {{ end -}}
+    <meta name="theme-color" content="#009688" /><!-- meta-theme-color for Chrome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/portfolio-styles.css" />
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script>
+      window.addEventListener('load',function() {
+        var path = location.pathname;
+        for (var a of document.querySelectorAll('#menu > a')) {
+          var href = a.getAttribute('href');
+          if (href == "/") {
+            if (path == "/") a.classList.add('is-active');
+          } else if (path.startsWith(href)) {
+            a.classList.add('is-active');
+          }
+        }
+        for (var a of document.querySelectorAll("a[href^='http']:not([href*='" + location.hostname + "'])")) {
+          a.setAttribute('target', '_blank');
+        }
+      }, false);
+    </script>
+    {{ .Hugo.Generator }}
+  </head>
+<body>
