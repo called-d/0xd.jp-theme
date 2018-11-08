@@ -23,10 +23,18 @@
       </ul>
     </aside>
   </header>
+  {{ if isset .Params "images" }}
+  <div class="mdl-card__media">
+  {{ range .Params.images }}
+    <img class="article-image" src="{{ . | absURL }}" border="0" />
+  {{ end }}
+  </div>
+  {{ else }}
   {{ if isset .Params "image" }}
   <div class="mdl-card__media">
     <img class="article-image" src="{{ .Params.image  | absURL }}" border="0" />
   </div>
+  {{ end }}
   {{ end }}
   {{ .Content }}
 </article>
