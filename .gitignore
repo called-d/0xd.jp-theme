@@ -1,5 +1,4 @@
-/static/css/*material*css
-/static/css/styles.css
+/assets/css/*material*css
 
 # Created by https://www.gitignore.io/api/emacs,linux,sass,vim,visualstudiocode,windows
 
