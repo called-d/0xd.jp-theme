@@ -60,6 +60,14 @@
     {{ end -}}
     <meta name="theme-color" content="#009688" /><!-- meta-theme-color for Chrome -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    {{- if fileExists "static/img/favicon.ico" }}
+    <link rel="icon" href="/img/favicon.ico">
+    {{- else if fileExists "static/img/favicon.png" -}}
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    {{ end -}}
+    {{- if fileExists "static/img/apple-touch-icon-180x180.png" }}
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon-180x180.png">
+    {{- end }}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/css/styles.css" />
