@@ -1,9 +1,11 @@
 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-  {{ with .Params.image }}
-  <div class="mdl-card__media">
-    <img class="card-image" src="{{ . }}" border="0">
-  </div>
-  {{ end }}
+  <a class="" href="{{ .Permalink }}">
+    {{ with .Params.image }}
+    <div class="mdl-card__media">
+      <img class="card-image" src="{{ . }}" border="0">
+    </div>
+    {{ end }}
+  </a>
   <div class="mdl-card__title">
     <a class="mdl-card__title-text" href="{{ .Permalink }}">{{ .Title }}</a>
   </div>
