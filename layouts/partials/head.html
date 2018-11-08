@@ -73,6 +73,8 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/portfolio-styles.css" />
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js"></script>
     {{ template "_internal/google_analytics_async.html" . }}
     <script>
       window.addEventListener('load',function() {
@@ -87,6 +89,21 @@
         }
         for (var a of document.querySelectorAll("a[href^='http']:not([href*='" + location.hostname + "'])")) {
           a.setAttribute('target', '_blank');
+        }
+        let now = moment();
+        let dateProcs = {
+          post_on (date) {
+            let text = date.format("LL");
+            if (date.year() == now.year()) text = date.fromNow();
+            this.innerText = text;
+          },
+          post_at (datetime) { this.innerText = datetime.format("llll"); },
+          relative (date) {
+            this.innerText = date.fromNow();
+          }
+        };
+        for (const [class_, f] of Object.entries(dateProcs)) {
+          for (const elem of document.querySelectorAll(`time.${class_}[datetime]`)) { f.call(elem, moment(elem.getAttribute("datetime"))); }
         }
       }, false);
     </script>
