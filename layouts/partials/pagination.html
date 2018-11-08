@@ -1,0 +1,15 @@
+{{- $paginator := .Paginator -}}
+{{- $mdl_button_classes := "mdl-button mdl-js-button mdl-js-ripple-effect" -}}
+
+{{ if gt $paginator.TotalPages 1 }}
+    <ul class="pagination">
+        <li><a {{ if not $paginator.HasPrev -}} disabled {{- end }} class="{{ $mdl_button_classes }}" {{ if $paginator.HasPrev -}} href="{{ ($paginator.First).URL }}" aria-label="first" {{- end }}><i class="material-icons">first_page</i></a></li>
+        <li><a {{ if not $paginator.HasPrev -}} disabled {{- end }} class="{{ $mdl_button_classes }}" {{ if $paginator.HasPrev -}} href="{{ ($paginator.Prev).URL }}" aria-label="prev" {{- end }}><i class="material-icons">navigate_before</i></a></li>
+        {{- range $paginator.Pagers }}
+            <li><a class="{{ $mdl_button_classes }} {{ if eq . $paginator }}current mdl-button--raised{{ end }}"
+                   href="{{ .URL }}">{{ .PageNumber }}</a></li>
+        {{ end -}}
+        <li><a {{ if not $paginator.HasNext -}} disabled {{- end }} class="{{ $mdl_button_classes }}" {{ if $paginator.HasNext -}} href="{{ ($paginator.Next).URL }}" aria-label="next" {{- end }}><i class="material-icons">navigate_next</i></a></li>
+        <li><a {{ if not $paginator.HasNext -}} disabled {{- end }} class="{{ $mdl_button_classes }}" {{ if $paginator.HasNext -}} href="{{ ($paginator.Last).URL }}" aria-label="last" {{- end }}><i class="material-icons">last_page</i></a></li>
+    </ul>
+{{ end }}
